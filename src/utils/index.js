@@ -96,11 +96,10 @@ exports.baileysIs = (webMessage, context) => {
 };
 
 exports.getContent = (webMessage, context) => {
-    webMessage.message?.[`${context}Message`] ||
-    webMessage.message?.extendedTextMessagemessage?.contextInfo?.quotedMessage?.[
-        `${context}Message`
-    ]
-}
+    return webMessage.message?.[`${context}Message`] ||
+        webMessage.message?.extendedTextMessage?.contextInfo?.quotedMessage?.[`${context}Message`];
+};
+
 
 exports.download = async (webMessage, filename, context, extension) => {
     const content = this.getContent(webMessage, context);

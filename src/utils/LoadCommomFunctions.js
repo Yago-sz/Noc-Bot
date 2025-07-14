@@ -12,9 +12,22 @@ exports.LoadCommomFunctions = ({ socket, webMessage }) => {
 
     const quoted = webMessage.message?.extendedTextMessage?.contextInfo?.quotedMessage;
 
-    const isImage = baileysIs(webMessage, "image") || baileysIs({ message: quoted }, "image");
-    const isVideo = baileysIs(webMessage, "video") || baileysIs({ message: quoted }, "video");
-    const isSticker = baileysIs(webMessage, "sticker") || baileysIs({ message: quoted }, "sticker");
+ const imageMsg = webMessage.message?.imageMessage;
+const quotedImageMsg = webMessage.message?.extendedTextMessage?.contextInfo?.quotedMessage?.imageMessage;
+const isImage = !!(imageMsg || quotedImageMsg);
+
+const videoMsg = webMessage.message?.videoMessage;
+const quotedVideoMsg = webMessage.message?.extendedTextMessage?.contextInfo?.quotedMessage?.videoMessage;
+const isVideo = !!(videoMsg || quotedVideoMsg);
+
+const stickerMsg = webMessage.message?.stickerMessage;
+const quotedStickerMsg = webMessage.message?.extendedTextMessage?.contextInfo?.quotedMessage?.stickerMessage;
+const isSticker = !!(stickerMsg || quotedStickerMsg);
+
+// 🧪 Log para debug
+console.log("isImage:", isImage);
+console.log("isVideo:", isVideo);
+console.log("isSticker:", isSticker);
 
     // 🧩 Função download universal (image, video, sticker)
     const download = async (webMessage, filename, type, ext) => {
