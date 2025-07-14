@@ -1,0 +1,19 @@
+# Ignorar o arquivo de variáveis de ambiente
+.env
+
+# Ignorar a pasta que gerou os blobs com sua chave
+.history/
+
+# Ignorar dependências do Node.js
+node_modules/
+
+# Ignorar arquivos de build ou distribuição (se aplicável)
+dist/
+build/
+
+# Ignorar arquivos temporários e de log
+*.log
+
+# Ignorar arquivos de sistema que às vezes aparecem
+.DS_Store
+Thumbs.db
