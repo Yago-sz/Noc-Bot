@@ -1,6 +1,8 @@
 const path = require('path')
-require('dotenv').config();
+require('dotenv').config({ path: path.resolve(__dirname, '..', '.env') });
 const apiKey = process.env.OPENROUTER_API_KEY;
+
+exports.API_KEY = apiKey;
 
 exports.TIMEOUT_IN_MILLISESCONDS_BY_EVENT = 500
 exports.PREFIX = "/"

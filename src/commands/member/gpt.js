@@ -1,7 +1,6 @@
 const { PREFIX } = require("../../config");
 const { gpt } = require("../../services/gpt");
-require('dotenv').config();
-const apiKey = process.env.OPENROUTER_API_KEY;
+
 module.exports = {
     name: 'gpt',
     description: 'Comandos de inteligência artificial',

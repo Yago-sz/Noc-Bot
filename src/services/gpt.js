@@ -1,11 +1,11 @@
 const axios = require("axios");
-const { OPENROUTER_API_KEY } = require("../config");
+const { API_KEY } = require('../config');
+
 
 exports.gpt = async (content) => {
-    if (!OPENROUTER_API_KEY) {
-        throw new Error("É necessário configurar OPENROUTER_API_KEY no seu config.js");
-    }
-
+ if (!API_KEY) {
+  throw new Error("É necessário configurar API_KEY no seu config.js");
+}
     const messages = [
         {
             role: "system",
@@ -27,9 +27,9 @@ exports.gpt = async (content) => {
             temperature: 0.7
         },
         {
-            headers: {
-                "Content-Type": "application/json",
-                Authorization: `Bearer ${OPENROUTER_API_KEY}`
+                    headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${API_KEY}`
             }
         }
     );
