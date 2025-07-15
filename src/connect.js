@@ -13,7 +13,7 @@ const { question, onlyNumbers } = require("./utils");
 console.log("CHAVE DA IA:", process.env.OPENROUTER_API_KEY);
 
 exports.connect = async () => {
-  const { state, saveCreds } = await useMultiFileAuthState("./auth");
+const { state, saveCreds } = await useMultiFileAuthState("/data/auth");
   const { version } = await fetchLatestBaileysVersion();
 
   const socket = makeWASocket({
