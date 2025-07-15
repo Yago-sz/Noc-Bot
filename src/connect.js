@@ -51,7 +51,10 @@ exports.connect = async () => {
     }
   });
 
-  socket.ev.on("creds.update", saveCreds);
+ socket.ev.on("creds.update", async (creds) => {
+  console.log("🔐 Salvando credenciais no MongoDB...");
+  await saveCreds(creds);
+});
 
   return socket;
 };
