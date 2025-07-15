@@ -6,7 +6,7 @@ const {findCommandImport} = require(".")
 
 exports.dynamicCommand = async (paramHandler) => {
 
-
+//
 
     const {commandName, prefix, sendWarningReply, sendErrorReply} = paramHandler;
  
