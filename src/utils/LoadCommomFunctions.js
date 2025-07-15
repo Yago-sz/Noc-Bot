@@ -24,10 +24,6 @@ const stickerMsg = webMessage.message?.stickerMessage;
 const quotedStickerMsg = webMessage.message?.extendedTextMessage?.contextInfo?.quotedMessage?.stickerMessage;
 const isSticker = !!(stickerMsg || quotedStickerMsg);
 
-// 🧪 Log para debug
-console.log("isImage:", isImage);
-console.log("isVideo:", isVideo);
-console.log("isSticker:", isSticker);
 
     // 🧩 Função download universal (image, video, sticker)
     const download = async (webMessage, filename, type, ext) => {

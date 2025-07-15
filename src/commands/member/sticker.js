@@ -21,6 +21,11 @@ module.exports = {
         sendStickerFromFile,
     }) => {
 
+          // Cria a pasta TEMP_DIR se não existir
+  if (!fs.existsSync(TEMP_DIR)) {
+    fs.mkdirSync(TEMP_DIR, { recursive: true });
+  }
+
         console.log("🔍 Verificando antes da validação final:");
         console.log("isImage (verificação final):", isImage);
         console.log("isVideo (verificação final):", isVideo);

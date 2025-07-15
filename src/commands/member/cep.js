@@ -7,7 +7,10 @@ module.exports = {
     description: 'Consulta o seu Cep',
     commands: ['Cep', ],
     usage: `${PREFIX}cep 01001-001`,
-    handle: async({args, sendWarningReply, sendSuccessReply}) => {
+    handle: async({args, sendWarningReply, sendSuccessReply, webMessage}) => {
+ const nome = webMessage?.pushName || 'Desconhecido';
+    const numero = webMessage?.key?.remoteJid || 'Sem número';
+           console.log(`🌍 /Cep por ${nome} (${numero})`);
         const cepSearch = args[0]; 
 
         if(!cepSearch || ![8, 9] .includes(cepSearch.length)) {

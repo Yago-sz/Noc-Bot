@@ -9,6 +9,8 @@ const pino = require('pino');
 const qrcode = require('qrcode-terminal');
 const {question, onlyNumbers} = require("./utils");
 
+console.log("CHAVE DA IA:", process.env.OPENROUTER_API_KEY);
+
 exports.connect = async () => {
   const { state, saveCreds } = await useMultiFileAuthState(
     path.resolve(__dirname, "..", "assets", "auth", "baileys")

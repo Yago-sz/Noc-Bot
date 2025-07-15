@@ -8,7 +8,6 @@ exports.dynamicCommand = async (paramHandler) => {
 
 
 
-
     const {commandName, prefix, sendWarningReply, sendErrorReply} = paramHandler;
  
     const {type, command} = findCommandImport(commandName); 
@@ -23,6 +22,12 @@ exports.dynamicCommand = async (paramHandler) => {
     }
 
 try {
+    const nome = paramHandler.webMessage?.pushName || 'Desconhecido';
+  const numero = paramHandler.webMessage?.key?.remoteJid || 'Sem número';
+
+  console.log(`🗣️ Quem digitou o comando foi: ${nome}, cujo numero é: (${numero})`);
+
+
   await command.handle({ ...paramHandler, type });
 } catch (error) {
   console.log(error);

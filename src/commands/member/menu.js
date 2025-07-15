@@ -7,7 +7,10 @@ module.exports = {
     description: 'Menu de Comandos',
     commands: ['menu', 'help'],
     usage: `${PREFIX}comando`,
-    handle: async({sendReply}) => {
+    handle: async({sendReply, webMessage}) => {
+           const nome = webMessage?.pushName || 'Desconhecido';
+    const numero = webMessage?.key?.remoteJid || 'Sem número';
+           console.log(`📜 /menu por ${nome} (${numero})`);
        await sendReply(`\n\n${menuMessage()}`)
     }
 };
