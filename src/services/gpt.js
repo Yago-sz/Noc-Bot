@@ -27,10 +27,13 @@ exports.gpt = async (content) => {
             temperature: 0.7
         },
         {
-                    headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${API_KEY}`
-            }
+               headers: {
+  "Authorization": `Bearer ${API_KEY}`,
+  "Content-Type": "application/json",
+  "HTTP-Referer": "https://nocbot.com",
+  "X-Title": "Noc Bot"
+}
+            
         }
     );
 
