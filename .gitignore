@@ -13,7 +13,7 @@ build/
 
 # Ignorar arquivos temporários e de log
 *.log
-
+//
 # Ignorar arquivos de sistema que às vezes aparecem
 .DS_Store
 Thumbs.db
