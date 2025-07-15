@@ -1,7 +1,24 @@
 const axios = require('axios')
 const API_KEY = process.env.TMDB_API_KEY
 
-const seriesIds = [1396, 2316, 1399, 82856, 1434, 1418, 2734, 60625, 1100]
+const seriesIds = [1396,
+    2316, //the office
+    1399, //game of thrones
+    66732, //stranget things
+    1396, //breaking bad
+    94605, //arcane
+    1622, //Supernatural
+    76479, //the boys
+    60574, //peaky blinders
+    48891, //brooklyn nine nine 
+    1402, // the walking dead
+    100088, //the last of us
+        
+        
+        ]
+
+
+
 
 const getRandomSeries = async () => {
   const randomId = seriesIds[Math.floor(Math.random() * seriesIds.length)]

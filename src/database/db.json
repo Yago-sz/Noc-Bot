@@ -20,6 +20,20 @@
       "serie": 1100,
       "titulo": "Como Eu Conheci Sua Mãe",
       "nota": 2
+    },
+    {
+      "user": "5521968183350@s.whatsapp.net",
+      "nome": "Yago",
+      "serie": 1399,
+      "titulo": "Game of Thrones",
+      "nota": 4
+    },
+    {
+      "user": "5521968183350@s.whatsapp.net",
+      "nome": "Yago",
+      "serie": 2316,
+      "titulo": "The Office",
+      "nota": 5
     }
   ],
   "pendentes": [
@@ -29,9 +43,9 @@
       "titulo": "The Mandalorian"
     },
     {
-      "user": "5521968183350@s.whatsapp.net",
-      "serie": 1399,
-      "titulo": "Game of Thrones"
+      "user": "5521972156096@s.whatsapp.net",
+      "serie": 1396,
+      "titulo": "Breaking Bad: A Química do Mal"
     }
   ]
 }
