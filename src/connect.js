@@ -2,28 +2,24 @@ const {
   default: makeWASocket,
   DisconnectReason,
   fetchLatestBaileysVersion,
+  useMultiFileAuthState,
 } = require("@whiskeysockets/baileys");
 
-const { makeMongoDBAuthState } = require("@whiskeysockets/mongo-auth");
 const pino = require("pino");
 const qrcode = require("qrcode-terminal");
-require("dotenv").config(); // garante acesso ao MONGO_URI
+require("dotenv").config();
 const { question, onlyNumbers } = require("./utils");
-//
+
 console.log("CHAVE DA IA:", process.env.OPENROUTER_API_KEY);
 
 exports.connect = async () => {
-  const { state, saveCreds } = await makeMongoDBAuthState({
-    uri: process.env.MONGO_URI,
-    collection: "auth_sessions", // pode mudar o nome se quiser
-  });
-
+  const { state, saveCreds } = await useMultiFileAuthState("./auth");
   const { version } = await fetchLatestBaileysVersion();
 
   const socket = makeWASocket({
-    printQRInTerminal: false,
     version,
     logger: pino({ level: "error" }),
+    printQRInTerminal: false,
     auth: state,
     browser: ["chrome (linux)", "", ""],
     markOnlineOnConnect: true,
@@ -43,19 +39,19 @@ exports.connect = async () => {
 
       if (shouldReconnect) {
         console.log("Reconectando...");
-        this.connect();
+        exports.connect(); // importante: use `exports.connect` em vez de `this.connect`
       } else {
         console.log("Conexão encerrada (logout).");
       }
     } else if (connection === "open") {
-      console.log("Conectado ao WhatsApp!");
+      console.log("✅ Conectado ao WhatsApp!");
     }
   });
 
- socket.ev.on("creds.update", async (creds) => {
-  console.log("🔐 Salvando credenciais no MongoDB...");
-  await saveCreds(creds);
-});
+  socket.ev.on("creds.update", async (creds) => {
+    console.log("💾 Salvando credenciais localmente...");
+    await saveCreds(creds);
+  });
 
   return socket;
 };
