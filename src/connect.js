@@ -1,25 +1,26 @@
 const {
   default: makeWASocket,
   DisconnectReason,
-  useMultiFileAuthState,
+  makeMongoDBAuthState,
   fetchLatestBaileysVersion,
-} = require("baileys");
-const path = require("path");
-const pino = require('pino');
-const qrcode = require('qrcode-terminal');
-const {question, onlyNumbers} = require("./utils");
+} = require("@whiskeysockets/baileys");
+const pino = require("pino");
+const qrcode = require("qrcode-terminal");
+require("dotenv").config(); // garante acesso ao MONGO_URI
+const { question, onlyNumbers } = require("./utils");
 
 console.log("CHAVE DA IA:", process.env.OPENROUTER_API_KEY);
 
 exports.connect = async () => {
-  const { state, saveCreds } = await useMultiFileAuthState(
-    path.resolve(__dirname, "..", "assets", "auth", "baileys")
-  );
+  const { state, saveCreds } = await makeMongoDBAuthState({
+    uri: process.env.MONGO_URI,
+    collection: "auth_sessions", // pode mudar o nome se quiser
+  });
 
   const { version } = await fetchLatestBaileysVersion();
 
   const socket = makeWASocket({
-    printQRInTerminal: false, // vamos mostrar QR manualmente
+    printQRInTerminal: false,
     version,
     logger: pino({ level: "error" }),
     auth: state,
@@ -30,7 +31,6 @@ exports.connect = async () => {
   socket.ev.on("connection.update", (update) => {
     const { connection, lastDisconnect, qr } = update;
 
-    // Se tiver QR code, gera no terminal
     if (qr) {
       console.log("Escaneie este QR code com seu WhatsApp:");
       qrcode.generate(qr, { small: true });
@@ -38,11 +38,11 @@ exports.connect = async () => {
 
     if (connection === "close") {
       const shouldReconnect =
-        lastDisconnect.error?.output?.statusCode !== DisconnectReason.loggedOut;
+        lastDisconnect?.error?.output?.statusCode !== DisconnectReason.loggedOut;
 
       if (shouldReconnect) {
         console.log("Reconectando...");
-        this.connect(); // tenta reconectar
+        this.connect();
       } else {
         console.log("Conexão encerrada (logout).");
       }
