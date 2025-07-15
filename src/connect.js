@@ -9,7 +9,7 @@ const pino = require("pino");
 const qrcode = require("qrcode-terminal");
 require("dotenv").config(); // garante acesso ao MONGO_URI
 const { question, onlyNumbers } = require("./utils");
-
+//
 console.log("CHAVE DA IA:", process.env.OPENROUTER_API_KEY);
 
 exports.connect = async () => {
