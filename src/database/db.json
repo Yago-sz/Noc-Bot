@@ -1,0 +1,37 @@
+{
+  "avaliacoes": [
+    {
+      "user": "5521968183350@s.whatsapp.net",
+      "nome": "Yago",
+      "serie": 1399,
+      "titulo": "Game of Thrones",
+      "nota": 5
+    },
+    {
+      "user": "5521968183350@s.whatsapp.net",
+      "nome": "Yago",
+      "serie": 1396,
+      "titulo": "Breaking Bad: A Química do Mal",
+      "nota": 5
+    },
+    {
+      "user": "5521992018363@s.whatsapp.net",
+      "nome": "Paulinha😻😻",
+      "serie": 1100,
+      "titulo": "Como Eu Conheci Sua Mãe",
+      "nota": 2
+    }
+  ],
+  "pendentes": [
+    {
+      "user": "5521992018363@s.whatsapp.net",
+      "serie": 82856,
+      "titulo": "The Mandalorian"
+    },
+    {
+      "user": "5521968183350@s.whatsapp.net",
+      "serie": 1399,
+      "titulo": "Game of Thrones"
+    }
+  ]
+}

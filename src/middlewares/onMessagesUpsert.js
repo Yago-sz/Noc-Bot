@@ -12,5 +12,8 @@ exports.OnMessagesUpsert = async ({ socket, messages }) => {
 
     const commomFunctions = LoadCommomFunctions({ socket, webMessage });
 
-    await dynamicCommand(commomFunctions);
+    await dynamicCommand({
+        ...commomFunctions,
+        msg: webMessage // ✅ Adicionado para evitar erro no comando /avaliar
+    });
 };

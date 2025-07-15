@@ -28,7 +28,7 @@ try {
   console.log(`🗣️ Quem digitou o comando foi: ${nome}, cujo numero é: (${numero})`);
 
 
-  await command.handle({ ...paramHandler, type });
+  await command.handle({ ...paramHandler, type, nome });
 } catch (error) {
   console.log(error);
 
