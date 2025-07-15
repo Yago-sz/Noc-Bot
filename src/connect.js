@@ -1,9 +1,10 @@
 const {
   default: makeWASocket,
   DisconnectReason,
-  makeMongoDBAuthState,
   fetchLatestBaileysVersion,
 } = require("@whiskeysockets/baileys");
+
+const { makeMongoDBAuthState } = require("@whiskeysockets/baileys/lib/mongodb");
 const pino = require("pino");
 const qrcode = require("qrcode-terminal");
 require("dotenv").config(); // garante acesso ao MONGO_URI
