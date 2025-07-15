@@ -1,4 +1,4 @@
-const { Low } = require('lowdb')
+const { Low } = await import('lowdb')
 const { JSONFile } = require('lowdb/node')
 
 const adapter = new JSONFile('./src/database/db.json')
