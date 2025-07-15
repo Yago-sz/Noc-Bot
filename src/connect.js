@@ -4,7 +4,7 @@ const {
   fetchLatestBaileysVersion,
 } = require("@whiskeysockets/baileys");
 
-const { makeMongoDBAuthState } = require("@whiskeysockets/baileys/lib/mongodb");
+const { makeMongoDBAuthState } = require("@whiskeysockets/mongo-auth");
 const pino = require("pino");
 const qrcode = require("qrcode-terminal");
 require("dotenv").config(); // garante acesso ao MONGO_URI
