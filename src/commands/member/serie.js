@@ -11,19 +11,25 @@ module.exports = {
   usage: `${PREFIX}comando`,
 
   handle: async ({ socket, msg, sendReply, remoteJid, sendSucessReact, nome }) => {
-    const user = msg?.key?.remoteJid || remoteJid
 
+
+    
+    
+    const user = msg?.key?.remoteJid || remoteJid
+console.log(`📝 Comando recebido de ${user}: ${msg.message?.conversation || msg.body}`)
     const db = await getDB()
 
-    const serie = await getRandomSeries()
+  const serie = await getRandomSeries(user, db)
 
     if (!serie) {
       await sendReply("🎬 Você já avaliou todas as séries disponíveis!")
       return
     }
 
-    const media = await calcularMediaPorSerie(serie.id, db)
-    const texto = formatarTextoDaSerie(serie, media)
+const avaliacoesDaSerie = db.data.avaliacoes.filter(a => a.serie === serie.id)
+const totalVotos = avaliacoesDaSerie.length
+const media = await calcularMediaPorSerie(serie.id, db)
+const texto = formatarTextoDaSerie(serie, media, totalVotos)
 
     await socket.sendMessage(remoteJid, {
       image: { url: serie.poster },
